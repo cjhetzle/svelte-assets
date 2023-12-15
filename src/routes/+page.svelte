@@ -15,7 +15,7 @@ import { pb } from '$lib';
 
 
 <button class="btn btn-primary" on:click={queryPb}>Query</button>
-<button on:click={() => goto('/create')}>Create</button>
+<button class='btn' on:click={() => goto('/create')}>Create</button>
 
 {#each result as item}
     <div>{item["field"]} {item["field1"]}</div>
