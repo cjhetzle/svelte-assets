@@ -16,6 +16,10 @@
             field: $formData.field,
             field1: $formData.field1
         });
+        formData.set({
+            field: '',
+            field1: ''
+        });
     }
 
 </script>
