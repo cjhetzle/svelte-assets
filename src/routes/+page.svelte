@@ -1,46 +1,60 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-import { pb } from '$lib';
+	import { pb } from '$lib';
 	import { assetId, assets } from '$lib/stores';
-	import AssetList from '../components/AssetAccordian.svelte';
+	import AssetAccordion from '../components/AssetAccordion.svelte';
 	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+	import { themeChange } from 'theme-change';
 
-    let assetIdValue = '';
-    assetId.subscribe((value) => {
-        assetIdValue = value;
-        console.log('assetId.subscribe');
-        console.log(assetIdValue)
-    });
+	// NOTE: the element that is using one of the theme attributes must be in the DOM on mount
+	onMount(() => {
+		themeChange(false);
+		// 👆 false parameter is required for svelte
+	});
 
-    async function queryPb() {
-        console.log('queryPb');
-        const result = await pb.collection('posts').getFullList();
+	let assetIdValue = '';
+	assetId.subscribe((value) => {
+		assetIdValue = value;
+		console.log('assetId.subscribe');
+		console.log(assetIdValue);
+	});
 
-        const assetList = result.map((item) => {
-            return {
-                id: item.id,
-                field: item.field,
-                field1: item.field1
-            };
-        });
+	async function queryPb() {
+		console.log('queryPb');
+		const result = await pb.collection('posts').getFullList();
 
-        console.log(assetList)
+		const assetList = result.map((item) => {
+			return {
+				id: item.id,
+				field: item.field,
+				field1: item.field1
+			};
+		});
 
-        assets.update(() => assetList)
-        
-        console.log($assets);
-    }
+		console.log(assetList);
+
+		assets.update(() => assetList);
+
+		console.log($assets);
+	}
 
 	export let data: PageData;
 
-    queryPb();
+	queryPb();
 </script>
 
+<button class="btn mx-2" on:click={queryPb}>Refresh</button>
+<button class="btn mx-2 btn-accent" on:click={() => goto('/create')}>Create</button>
+<button
+	class="btn btn-primary mx-2"
+	on:click={() => {
+		if (assetIdValue) goto(`/update/${assetIdValue}`);
+	}}>Update</button
+>
 
-<button class="btn btn-primary" on:click={queryPb}>Query</button>
-<button class='btn' on:click={() => goto('/create')}>Create</button>
-<button class='btn' on:click={() => {if (assetIdValue)goto(`/update/${assetIdValue}`)}}>Update</button>
-
-
-<AssetList />
-
+<div
+	class="my-5 grid grid-cols-2 justify-items-center align-items-center items-start sm:w-2/3 w-full max-w-max"
+>
+	<AssetAccordion />
+</div>

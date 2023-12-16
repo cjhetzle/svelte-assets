@@ -35,14 +35,14 @@
 
 <form on:submit={createNewPost}>
     
-    <div class="form-group">
+    <div class="form-group my-2">
         <label for="field">Field</label>
-        <input type="text" class="form-control" id="field" bind:value={$formData.field}>
+        <input type="text" class="form-control input input-bordered w-full max-w-xs" id="field" bind:value={$formData.field}>
     </div>
-    <div class="form-group">
+    <div class="form-group my-2">
         <label for="field1">Field1</label>
-        <input type="text" class="form-control" id="field1" bind:value={$formData.field1}>
+        <input type="text" class="form-control input input-bordered w-full max-w-xs" id="field1" bind:value={$formData.field1}>
     </div>
-    <button type="submit" class="btn btn-primary">Submit<span class:loading class:loading-spinner={loading}></span></button>
+    <button type="submit" class="btn btn-accent m-5">Submit<span class:loading class:loading-spinner={loading}></span></button>
 
 </form>

@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"pocketbase": "^0.20.1",
-		"radix-svelte": "^0.9.0"
+		"radix-svelte": "^0.9.0",
+		"theme-change": "^2.5.0"
 	}
 }
