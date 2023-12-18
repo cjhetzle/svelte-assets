@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model assets {
+  id           Int     @id @default(autoincrement())
+  is_promoted  Boolean
+  name         String  @db.VarChar(255)
+  parent_asset Int?
+}
+
+model kvp {
+  id    Int     @id @default(autoincrement())
+  name  String? @unique(map: "uk_f4s6g94mkie9s1nuj9mve5p4j") @db.VarChar(255)
+  value String? @db.VarChar(255)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model products {
+  id          Int     @id @default(autoincrement())
+  category    Int?    @db.SmallInt
+  description String? @db.VarChar(255)
+  home_url    String? @db.VarChar(255)
+  image_url   String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+  type        Int?    @db.SmallInt
+}
+
+model todos {
+  id           String   @id @db.VarChar(255)
+  completed    Boolean?
+  order_number Int?
+  title        String   @db.VarChar(255)
+}
+
+model posts {
+  id     BigInt @id @default(autoincrement())
+  field  String @db.VarChar(255)
+  field1 String @db.VarChar(255)
+}

@@ -38,7 +38,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^5.7.0",
+		"@supabase/supabase-js": "^2.39.0",
 		"pocketbase": "^0.20.1",
+		"prisma": "^5.7.0",
 		"radix-svelte": "^0.9.0",
 		"theme-change": "^2.5.0"
 	}

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { pb } from '$lib';
+	import { prisma } from '$lib';
 	import { assetId, assets } from '$lib/stores';
 	import AssetAccordion from '../components/AssetAccordion.svelte';
-	import type { PageData } from './$types';
+	import type { ActionData, PageData } from './$types';
 	import { onMount } from 'svelte';
 	import { themeChange } from 'theme-change';
 
@@ -20,31 +20,11 @@
 		console.log(assetIdValue);
 	});
 
-	async function queryPb() {
-		console.log('queryPb');
-		const result = await pb.collection('posts').getFullList();
-
-		const assetList = result.map((item) => {
-			return {
-				id: item.id,
-				field: item.field,
-				field1: item.field1
-			};
-		});
-
-		console.log(assetList);
-
-		assets.update(() => assetList);
-
-		console.log($assets);
-	}
-
 	export let data: PageData;
-
-	queryPb();
+	$: ({ posts } = data);
+	$: assets.set(posts);
 </script>
 
-<button class="btn mx-2" on:click={queryPb}>Refresh</button>
 <button class="btn mx-2 btn-accent" on:click={() => goto('/create')}>Create</button>
 <button
 	class="btn btn-primary mx-2"
