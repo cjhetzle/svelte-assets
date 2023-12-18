@@ -47,7 +47,7 @@
 			<ul class="p-4 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
 				<li>
 					<button data-toggle-theme="dark,retro" data-act-class="ACTIVECLASS">
-						<input type="checkbox" class="toggle" checked />Theme</button
+						<input type="checkbox" class="toggle" />Theme</button
 					>
 				</li>
 			</ul>
