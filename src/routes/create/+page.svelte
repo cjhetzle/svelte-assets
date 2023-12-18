@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { loading1Store } from '$lib/stores';
+	import { loadingStore } from '$lib/stores';
 	import type { ActionData, PageData } from './$types';
 
 	let loading: Boolean;
-	loading1Store.subscribe((value) => {
+	loadingStore.subscribe((value) => {
 		loading = value;
 	});
 	export let form: ActionData;
@@ -28,7 +28,7 @@
 			name="field1"
 		/>
 	</div>
-	<button formaction="?/submitForm" type="submit" on:click={() => loading1Store.set(true)} class="btn btn-accent m-5"
+	<button formaction="?/submitForm" type="submit" on:click={() => loadingStore.set(true)} class="btn btn-accent m-5"
 		>Submit<span class:loading class:loading-spinner={loading}></span></button
 	>
 </form>

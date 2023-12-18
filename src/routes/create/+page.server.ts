@@ -1,5 +1,5 @@
 import { prisma } from '$lib';
-import { loading1Store } from '$lib/stores';
+import { loadingStore } from '$lib/stores';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load = (async () => {
@@ -19,6 +19,6 @@ export const actions: Actions = {
                 field1: field1 as string,
             }
         })
-        loading1Store.set(false);
+        loadingStore.set(false);
     }
 }
